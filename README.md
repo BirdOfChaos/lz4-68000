@@ -1,0 +1,1 @@
+Work in progress. Will eventually be a full implementation of lz4 for ATARI ST in 68000 assembly.
