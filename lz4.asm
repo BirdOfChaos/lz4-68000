@@ -27,9 +27,19 @@ Start:
 Finish:
 	bra 	Finish
 	ENDIF
-	
-CLEARS:		dc.b 'First string to compress, contains repeated character AAAAAAA',0
-BUFFER:		ds.w 255,0
+
+	;String and LZ4 compressed data (v1.4+), obtained with CLI "lz4 -1"
+STRING:		dc.b 'AAAAAAAAAABCCCCCCCCCCDEEEEEEEEEEFGGGGGGGGGGHIIIIIIIIIIJKKKKKKKKKKL'
+			dc.b 'MMMMMMMMMMNOOOOOOOOOOPQQQQQQQQQQRSSSSSSSSSSTUUUUUUUUUUVWWWWWWWWWWX'
+			dc.b 'YYYYYYYYYYZ',0
+;MAGIC:		dc.b $04,$22,$4d,$18
+COMPS:		dc.b $64,$40,$a7,$49,$00,$00,$00,$15,$41,$01,$00,$25
+			dc.b $42,$43,$01,$00,$25,$44,$45,$01,$00,$25,$46,$47,$01,$00,$25,$48
+			dc.b $49,$01,$00,$25,$4a,$4b,$01,$00,$25,$4c,$4d,$01,$00,$25,$4e,$4f
+			dc.b $01,$00,$25,$50,$51,$01,$00,$25,$52,$53,$01,$00,$25,$54,$55,$01
+			dc.b $00,$25,$56,$57,$01,$00,$d0,$58,$59,$59,$59,$59,$59,$59,$59,$59
+			dc.b $59,$59,$5a,$0a,$00,$00,$00,$00,$41,$cf,$00,$23
+BUFFER:		ds.w 128,0
 	even	
 	
 PrintChar:
